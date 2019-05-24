@@ -7,12 +7,12 @@ module OmniAuth
       DEFAULT_SCOPE = 'accountinfofull'
       option :name, 'dwolla'
       option :client_options, {
-        :site => 'https://www.dwolla.com',
-        :authorize_url => '/oauth/v2/authenticate',
-        :token_url => '/oauth/v2/token'
+        :site => 'https://api-sandbox.dwolla.com',
+        :authorize_url => 'https://sandbox.dwolla.com/oauth/v2/authenticate',
+        :token_url => 'https://accounts-sandbox.dwolla.com/token'
       }
       #option :provider_ignores_state, true
-      # setting that has NO effect. 
+      # setting that has NO effect.
       # If anyone can figure a way to make it work
       # PLEASE issue a pull request. -masukomi
 
@@ -43,7 +43,7 @@ module OmniAuth
         end
 
         def prune!(hash)
-          hash.delete_if do |_, value| 
+          hash.delete_if do |_, value|
             prune!(value) if value.is_a?(Hash)
             value.nil? || (value.respond_to?(:empty?) && value.empty?)
           end
